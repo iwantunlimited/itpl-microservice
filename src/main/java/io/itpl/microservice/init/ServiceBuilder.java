@@ -19,8 +19,9 @@ public class ServiceBuilder {
     DefaultAnalyticsBuilder analyticsBuilder;
 
     public void execute()  {
-
+        logger.trace("Started Executing Service Builder");
         try{
+            logger.trace("Executing Default Analytics Builder using <init-widget.json>");
             analyticsBuilder.createDefaultAnalytics();
         }catch (IOException e){
             logger.warn("[analyticsBuilder]-{}",e.getMessage());

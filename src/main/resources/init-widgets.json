@@ -1,0 +1,114 @@
+[
+  {
+    "title" : "Shopping Carts",
+    "alias" : "default-counter-shopping-cart",
+    "outputFormat" : "COUNTER",
+    "serviceId" : "products",
+    "className" : "ShoppingCart",
+    "primarySeriesId" : "domain",
+    "primarySeriesCaption" : "domain",
+    "primarySeriesDataType" : "string",
+    "documentSelectors": [
+      {
+        "key" : "orderPlaced",
+        "value": "false"
+      }
+    ],
+    "dateFilterId" : "createdOn",
+    "startDate" : null,
+    "finishDate" : null,
+    "accumulatorId" : "netAmount",
+    "unwindId" : null
+  },
+  {
+    "title" : "Orders",
+    "alias" : "default-counter-orders",
+    "outputFormat" : "COUNTER",
+    "serviceId" : "products",
+    "className" : "ShoppingCart",
+    "primarySeriesId" : "domain",
+    "primarySeriesCaption" : "domain",
+    "primarySeriesDataType" : "string",
+    "documentSelectors": [
+      {
+        "key" : "orderPlaced",
+        "value": "true"
+      }
+    ],
+    "dateFilterId" : "createdOn",
+    "startDate" : null,
+    "finishDate" : null,
+    "accumulatorId" : "netAmount",
+    "unwindId" : null
+  },
+  {
+    "title" : "Shopping Carts Trend",
+    "alias" : "default-chart-shopping-carts",
+    "outputFormat" : "BAR_GRAPH",
+    "serviceId" : "products",
+    "className" : "ShoppingCart",
+    "primarySeriesId" : "createdOnDate",
+    "primarySeriesCaption" : "Date",
+    "primarySeriesDataType" : "string",
+    "documentSelectors": [
+      {
+        "key" : "orderPlaced",
+        "value": "false"
+      }
+    ],
+    "dateFilterId" : "createdOn",
+    "startDate" : null,
+    "finishDate" : null,
+    "accumulatorId" : "netAmount",
+    "unwindId" : null
+  },
+  {
+    "title" : "Sales Orders Trend",
+    "alias" : "default-chart-sales-orders",
+    "outputFormat" : "BAR_GRAPH",
+    "serviceId" : "products",
+    "className" : "ShoppingCart",
+    "primarySeriesId" : "orderedOnDate",
+    "primarySeriesCaption" : "Date",
+    "primarySeriesDataType" : "string",
+    "documentSelectors": [
+      {
+        "key" : "orderPlaced",
+        "value": "true"
+      }
+    ],
+    "dateFilterId" : "createdOn",
+    "startDate" : null,
+    "finishDate" : null,
+    "accumulatorId" : "netAmount",
+    "unwindId" : null
+  },
+
+  {
+    "title" : "Order Status Summary",
+    "alias" : "default-table-order-status-summary",
+    "outputFormat" : "TABLE",
+    "serviceId" : "products",
+    "className" : "ShoppingCart",
+    "primarySeriesId" : "deliveryModeName",
+    "primarySeriesCaption" : "Delivery Type",
+    "primarySeriesDataType" : "string",
+    "secondarySeriesId" : "orderStatus",
+    "secondarySeriesCaption" : "Status",
+
+    "documentSelectors": [
+      {
+        "key" : "orderPlaced",
+        "value": "true"
+      }
+    ],
+    "dateFilterId" : "createdOn",
+    "startDate" : null,
+    "finishDate" : null,
+    "accumulatorId" : null,
+    "unwindId" : null
+  }
+
+
+
+]

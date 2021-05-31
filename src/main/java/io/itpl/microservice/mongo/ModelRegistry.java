@@ -16,23 +16,18 @@ public class ModelRegistry {
 
     private Map<String,Class> registry = new HashMap<>();
 
-    public ModelRegistry(){
-        /**
-         *  discovery of model package should be automated.
-         *  however, till the time technique is unknown, lets put it manually.
-         */
-        packages.add("io.itpl.products.model");
-        packages.add("io.itpl.products.channels.storefront.model");
-
-
-        packages.forEach(packageName->scan(packageName));
-    }
 
     public Class load(String className){
         logger.trace("[Model-Class-Loader] Query:{}, exists:{}",className,registry.containsKey(className));
         return registry.get(className);
     }
-
+    public void execute(){
+        if(this.packages.isEmpty()){
+            logger.error("Nothing to Scan. Package List is empty");
+            return;
+        }
+        packages.forEach(packageName->scan(packageName));
+    }
     public void addToScanList(String packageName){
         packages.add(packageName);
     }

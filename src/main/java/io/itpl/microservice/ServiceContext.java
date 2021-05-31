@@ -19,7 +19,8 @@ private static final Logger logger = LoggerFactory.getLogger(ServiceContext.clas
 	
 	private ApplicationContext context;
 	private String actionPackage;
-	
+	private boolean transactionRelayEnabled;
+
 	@Autowired
 	private ActionRegistry actionRegistry;
 	
@@ -66,4 +67,23 @@ private static final Logger logger = LoggerFactory.getLogger(ServiceContext.clas
 		this.actionPackage = actionPackage;
 	}
 
+	public ApplicationContext getContext() {
+		return context;
+	}
+
+	public void setContext(ApplicationContext context) {
+		this.context = context;
+	}
+
+	public boolean isTransactionRelayEnabled() {
+		return transactionRelayEnabled;
+	}
+
+	public void setTransactionRelayEnabled(boolean transactionRelayEnabled) {
+		this.transactionRelayEnabled = transactionRelayEnabled;
+	}
+
+	public void setActionRegistry(ActionRegistry actionRegistry) {
+		this.actionRegistry = actionRegistry;
+	}
 }

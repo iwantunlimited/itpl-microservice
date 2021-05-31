@@ -20,7 +20,7 @@ import java.util.List;
 @Component
 public class DefaultAnalyticsBuilder extends MongoExecutorService {
     private static final Logger logger = LoggerFactory.getLogger(DefaultAnalyticsBuilder.class);
-
+    public static final String resourceName = "init-widgets.json";
     @Autowired
     ObjectMapper objectMapper;
 
@@ -28,9 +28,11 @@ public class DefaultAnalyticsBuilder extends MongoExecutorService {
     AnalyticsExecutorService service;
 
     public void createDefaultAnalytics() throws IOException {
-        Resource resource = new ClassPathResource("init-widgets.json");
+        Resource resource = new ClassPathResource(resourceName);
         File file = resource.getFile();
+        boolean fileExists = file.exists();
         long size = file.length();
+        logger.trace("[createDefaultAnalytics] {}, exists:{}, size:{}",resourceName,fileExists,size);
         byte[] chunk = new byte[(int)size];
         InputStream stream = resource.getInputStream();
         stream.read(chunk);

@@ -1,5 +1,6 @@
 package io.itpl.microservice.system;
 
+
 import io.itpl.microservice.api.ApiRequestBody;
 
 public class SystemUserFilterBody extends ApiRequestBody {

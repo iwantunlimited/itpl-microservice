@@ -34,6 +34,8 @@ public abstract class AbstractAction extends MongoExecutorService implements Act
 	@Autowired
 	SystemService relayService;
 
+	@Autowired
+	ServiceContext serviceContext;
 
 	/**
 	 * This method creates an instance of ApiResponse with Blank Response Body.
@@ -92,6 +94,9 @@ public abstract class AbstractAction extends MongoExecutorService implements Act
 	 * @param response
 	 */
 	public void execute(ActionRequest req, JsonNode request, JsonNode response) {
+		if(!serviceContext.isTransactionRelayEnabled()){
+			return;
+		}
 		final BroadcastMessageBody message = new BroadcastMessageBody();
 		message.setActionRequest(req);
 		message.setResponseObject(response);
