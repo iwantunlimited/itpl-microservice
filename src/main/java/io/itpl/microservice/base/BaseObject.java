@@ -248,22 +248,22 @@ public class BaseObject  {
 		this.realm = realm;
 	}
 
-	protected boolean missing(String value){
+	protected static boolean missing(String value){
 		return Strings.isNullOrEmpty(value);
 	}
-	protected boolean exists(String value){
+	protected static boolean exists(String value){
 		return !Strings.isNullOrEmpty(value);
 	}
-	protected boolean missing(Collection value){
+	protected static boolean missing(Collection value){
 		return value == null || value.isEmpty();
 	}
-	protected boolean exists(Collection value){
+	protected static boolean exists(Collection value){
 		return value != null && !value.isEmpty();
 	}
-	protected void returnInputError(String msg){
+	protected static void returnInputError(String msg){
 		throw new InvalidInputException(msg);
 	}
-	protected void returnNotFoundError(String msg) throws ItemNotFoundException {
+	protected static void returnNotFoundError(String msg) throws ItemNotFoundException {
 		throw new ItemNotFoundException(msg);
 	}
 
