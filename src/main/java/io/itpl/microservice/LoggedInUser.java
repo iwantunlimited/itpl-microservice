@@ -23,6 +23,7 @@ public class LoggedInUser {
     private String timeZoneId;
     private String profileImageUrl;
     private String avtarImageUrl;
+    private String realm;
 
     public String getDomainSsid() {
         return domainSsid;
@@ -158,5 +159,13 @@ public class LoggedInUser {
 
     public void setAvtarImageUrl(String avtarImageUrl) {
         this.avtarImageUrl = avtarImageUrl;
+    }
+
+    public String getRealm() {
+        return realm;
+    }
+
+    public void setRealm(String realm) {
+        this.realm = realm;
     }
 }

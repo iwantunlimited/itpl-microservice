@@ -15,6 +15,9 @@ public class UserObject {
 	private String timeZoneId;
 	private String mcc;
 	private String ssid;
+	private String realm;
+	private String domain;
+	private String systemUserId;
 	
 	public String getId() {
 		return id;
@@ -100,7 +103,47 @@ public class UserObject {
 		userObject.setTimeZoneId(user.getTimeZoneId());
 		userObject.setLocale(user.getLocale());
 		userObject.setAvtarUrl(user.getAvtarImageUrl());
+		userObject.setDomain(user.getDomainSsid());
+		userObject.setRealm(user.getRealm());
+		return userObject;
+	}
+	public LoggedInUser toLoggedInUser(){
+		LoggedInUser userObject = new LoggedInUser();
+		userObject.setFirstName(this.firstName);
+		userObject.setId(this.id);
+		userObject.setEmail(this.email);
+		userObject.setLastName(this.lastName);
+		userObject.setDomainSsid(this.ssid);
+		userObject.setMcc(this.mcc);
+		userObject.setMobile(this.mobile);
+		userObject.setTimeZoneId(this.timeZoneId);
+		userObject.setLocale(this.locale);
+		userObject.setAvtarImageUrl(this.avtarUrl);
+
 		return userObject;
 	}
 
+	public String getRealm() {
+		return realm;
+	}
+
+	public void setRealm(String realm) {
+		this.realm = realm;
+	}
+
+	public String getDomain() {
+		return domain;
+	}
+
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
+
+	public String getSystemUserId() {
+		return systemUserId;
+	}
+
+	public void setSystemUserId(String systemUserId) {
+		this.systemUserId = systemUserId;
+	}
 }
