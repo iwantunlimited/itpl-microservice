@@ -113,6 +113,8 @@ public class UserObject {
 		userObject.setId(this.id);
 		userObject.setEmail(this.email);
 		userObject.setLastName(this.lastName);
+		userObject.setDomain(this.domain);
+		userObject.setRealm(this.realm);
 		userObject.setDomainSsid(this.ssid);
 		userObject.setMcc(this.mcc);
 		userObject.setMobile(this.mobile);
