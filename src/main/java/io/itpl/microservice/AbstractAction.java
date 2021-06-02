@@ -98,6 +98,13 @@ public abstract class AbstractAction extends MongoExecutorService implements Act
 			return;
 		}
 		final BroadcastMessageBody message = new BroadcastMessageBody();
+		JsonNode domainNode = response.path("domain");
+		if(domainNode != null){
+			String domain = domainNode.textValue();
+			if(!Strings.isNullOrEmpty(domain)){
+				message.setDomain(domain);
+			}
+		}
 		message.setActionRequest(req);
 		message.setResponseObject(response);
 
