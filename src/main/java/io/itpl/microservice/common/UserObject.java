@@ -115,7 +115,7 @@ public class UserObject {
 		userObject.setLastName(this.lastName);
 		userObject.setDomain(this.domain);
 		userObject.setRealm(this.realm);
-		userObject.setDomainSsid(this.ssid);
+		userObject.setDomainSsid(this.domain);
 		userObject.setMcc(this.mcc);
 		userObject.setMobile(this.mobile);
 		userObject.setTimeZoneId(this.timeZoneId);
