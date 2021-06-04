@@ -7,6 +7,7 @@ import io.itpl.microservice.config.FeignConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -52,5 +53,11 @@ public interface SystemService {
 
     @PostMapping("/oauth/token")
     public Object login(@RequestHeader("Authorization") String basicAuth, @RequestBody Map<String,String> body);
+
+    @PostMapping("/api/remote/feature/upload")
+    public void uploadFeatures(@RequestBody List<Feature> elements);
+
+    @PostMapping("/api/remote/relay-config/upload")
+    public void uploadRelayConfig(@RequestBody List<RelayConfig> elements);
     
 }
