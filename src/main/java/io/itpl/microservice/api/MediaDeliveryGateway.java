@@ -56,7 +56,7 @@ public class MediaDeliveryGateway extends DefaultApiGateway {
             if(currentUser==null){
                 return ApiResponse.error("ERROR! Full Authentication is needed in order to access.");
             }
-            String systemUserId = currentUser.getId();
+            String username = currentUser.getId();
             /**
              *  Lets Attack the HttpRequest now and capture all input parameters.
              *  Remember : This is HTTP/POST with "form-data" and not a JSON BODY.
@@ -65,8 +65,8 @@ public class MediaDeliveryGateway extends DefaultApiGateway {
             if(actionCode == null) {
                 return ApiResponse.error("Can't Process request without <actionCode>");
             }
-            String transactionId = httpRequest.getParameter("transactionId");
-            String signatureKey = httpRequest.getParameter("signatureKey");
+            String tid = httpRequest.getParameter("tid");
+            String sid = httpRequest.getParameter("sid");
             /**
              *  Warning : Property "domain" is deprecated since Jan-2021.
              *  Although keeping implementation just for backward compatibility of existing Applications.
@@ -110,9 +110,13 @@ public class MediaDeliveryGateway extends DefaultApiGateway {
             /**
              *  Building "owner" Object based on LoggedInUser.
              */
+            if(currentUser == null){
+                return ApiResponse.error("Transaction not allowed without user login.");
+            }
 
+            // Create a Request Body wrapped in UserFile
             UserFile userFile = new UserFile();
-            userFile.setDomain(domain);
+            userFile.setDomain(currentUser.getDomain());
             userFile.setOwner(currentUser);
             userFile.setContent(data);
             userFile.setFileName(originalFileName.toLowerCase());
@@ -147,9 +151,14 @@ public class MediaDeliveryGateway extends DefaultApiGateway {
             /**
              *  We are ready to Go, Lets Wrap up Everything Under FileUploadRequest.
              */
-            FileUploadBody req =  new FileUploadBody();
+            if(userFile == null){
+                return ApiResponse.error("Something went wrong while Processing Attachment:"+originalFileName);
+            }
+            FileUploadRequest req =  new FileUploadRequest();
             req.setActionCode(actionCode);
-            req.setRequestBody(userFile);
+            req.setPayload(userFile);
+            req.setSid(sid);
+            req.setTid(tid);
             JsonNode body = objectMapper.convertValue(req, JsonNode.class);
             Map<String,String> pathVariables = new HashMap<>();
             pathVariables.put("originalFileName",originalFileName);
@@ -182,16 +191,17 @@ public class MediaDeliveryGateway extends DefaultApiGateway {
         if(height!=null && CommonHelper.isInteger(height)){
             filter.setHeight(Integer.parseInt(height));
         }
-        logger.info(filter.toString());
-        GetResourceBody req = new GetResourceBody();
+        logger.trace(filter.toString());
+        GetResourceRequest req = new GetResourceRequest();
         req.setRequestBody(filter);
+        req.setPayload(filter);
         req.setActionCode(actionCode);
 
         JsonNode body = objectMapper.convertValue(req, JsonNode.class);
         try {
-            logger.info("1:-"+objectMapper.writeValueAsString(body));
+            logger.trace("1:-"+objectMapper.writeValueAsString(body));
         } catch (JsonProcessingException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
         Map<String,String> pathVariables = new HashMap<>();

@@ -1,18 +1,20 @@
 package io.itpl.microservice.api;
 
-public class GetResourceBody {
-	private String actionCode;
+public class GetResourceBody extends ApiRequestBody{
+
 	private ResourceFilter requestBody;
+	private ResourceFilter payload;
 	private String remarks;
-	public GetResourceBody() {
-		// TODO Auto-generated constructor stub
+
+
+	public ResourceFilter getPayload() {
+		return payload;
 	}
-	public String getActionCode() {
-		return actionCode;
+
+	public void setPayload(ResourceFilter payload) {
+		this.payload = payload;
 	}
-	public void setActionCode(String actionCode) {
-		this.actionCode = actionCode;
-	}
+
 	public ResourceFilter getRequestBody() {
 		return requestBody;
 	}

@@ -173,4 +173,9 @@ public class UserFile {
 	public void setContentBase64(String contentBase64) {
 		this.contentBase64 = contentBase64;
 	}
+
+	public LoggedInUser getOwner() {
+		return owner;
+	}
 }
+
