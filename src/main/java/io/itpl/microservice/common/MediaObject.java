@@ -79,7 +79,7 @@ public class MediaObject {
 	private String title;
 	private String subTitle;
 	private String description;
-	
+	private String base64Content;
 	/**
 	 * List of Source Object having id and imageUrl field 
 	 */
@@ -183,7 +183,12 @@ public class MediaObject {
 	public void setAspectRatio(String aspectRatio) {
 		this.aspectRatio = aspectRatio;
 	}
-	
-	
-	
+
+	public String getBase64Content() {
+		return base64Content;
+	}
+
+	public void setBase64Content(String base64Content) {
+		this.base64Content = base64Content;
+	}
 }
