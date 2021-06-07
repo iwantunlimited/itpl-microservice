@@ -1,5 +1,7 @@
 package io.itpl.microservice.api;
 
+import io.itpl.microservice.LoggedInUser;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,11 +23,12 @@ public class UserFile {
 
 
 	private String domain;
-	private ResourceOwner owner;
+	private LoggedInUser owner;
 	private String fileName;
 	private String mimeType;
 	private long size;
 	private byte[] content;
+	private String contentBase64;
 	private boolean isDirectory;
 	private String directoryId;
 	private List<String> tags;
@@ -74,12 +77,7 @@ public class UserFile {
 		this.content = content;
 	}
 	
-	public ResourceOwner getOwner() {
-		return owner;
-	}
-	public void setOwner(ResourceOwner owner) {
-		this.owner = owner;
-	}
+
 	public String getDomain() {
 		return domain;
 	}
@@ -163,6 +161,16 @@ public class UserFile {
 	public void setRequiredSize(ResourceFilter requiredSize) {
 		this.requiredSize = requiredSize;
 	}
-	
-	
+
+	public void setOwner(LoggedInUser owner) {
+		this.owner = owner;
+	}
+
+	public String getContentBase64() {
+		return contentBase64;
+	}
+
+	public void setContentBase64(String contentBase64) {
+		this.contentBase64 = contentBase64;
+	}
 }

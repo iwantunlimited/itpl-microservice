@@ -110,16 +110,10 @@ public class MediaDeliveryGateway extends DefaultApiGateway {
             /**
              *  Building "owner" Object based on LoggedInUser.
              */
-            ResourceOwner owner = new ResourceOwner();
-            owner.setDomain(Strings.isNullOrEmpty(domain)? currentUser.getDomain() : domain);
-            owner.setId(systemUserId);
-            owner.setMobile(currentUser.getMobile());
-            owner.setEmail(currentUser.getEmail());
-            owner.setName(currentUser.getFirstName() + " " + currentUser.getLastName());
-            // Create a Request Body wrapped in UserFile
+
             UserFile userFile = new UserFile();
             userFile.setDomain(domain);
-            userFile.setOwner(owner);
+            userFile.setOwner(currentUser);
             userFile.setContent(data);
             userFile.setFileName(originalFileName.toLowerCase());
             userFile.setMimeType(contentType);
