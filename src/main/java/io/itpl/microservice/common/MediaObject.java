@@ -84,6 +84,18 @@ public class MediaObject {
 	 * List of Source Object having id and imageUrl field 
 	 */
 	private List<String>mediaSource;
+	/**
+	 * List Of Reactions
+	 */
+	private List<Reaction> reaction;
+		
+	public List<Reaction> getReaction() {
+		return reaction;
+	}
+
+	public void setReaction(List<Reaction> reaction) {
+		this.reaction = reaction;
+	}
 
 	public List<String> getMediaSource() {
 		return mediaSource;
