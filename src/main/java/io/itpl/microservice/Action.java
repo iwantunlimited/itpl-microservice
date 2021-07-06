@@ -13,5 +13,5 @@ public interface Action {
 	public static final int ACTION_DEFAULT_MOULDE = 0;
 	public static final int ACTION_PING_API = 1;
 	
-	public ApiResponse execute(ActionRequest action, JsonNode requestBody, Map<String,String> pathVariable);
+	public ApiResponse execute(ActionRequest action, JsonNode requestBody, Map<String,String> pathVariables);
 }

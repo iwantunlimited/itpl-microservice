@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 
@@ -40,8 +41,17 @@ public class DefaultFilter implements PageBuilder, QueryBuilder {
 		if(!Strings.isNullOrEmpty(inactive)) {
 			query.addCriteria(Criteria.where("inactive").is(Boolean.valueOf(inactive)));
 		}
-		if(!Strings.isNullOrEmpty(sortBy)) {
-			query.with(CommonHelper.sortBy(sortBy));
+		if(Strings.isNullOrEmpty(sortBy)) {
+			sortBy = "createdOn desc";
+		}
+		query.with(CommonHelper.sortBy(sortBy));
+		if(!Strings.isNullOrEmpty(fields)){
+			String [] selectedFields = fields.split(",");
+			if(selectedFields!=null && selectedFields.length > 0){
+				Arrays.stream(selectedFields).forEach(field->{
+					query.fields().include(field);
+				});
+			}
 		}
 		
 		return query;

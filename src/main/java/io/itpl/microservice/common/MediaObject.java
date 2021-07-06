@@ -1,5 +1,7 @@
 package io.itpl.microservice.common;
 
+import org.springframework.data.annotation.Transient;
+
 import java.util.List;
 
 /**
@@ -79,7 +81,7 @@ public class MediaObject {
 	private String title;
 	private String subTitle;
 	private String description;
-	private String base64Content;
+	@Transient private String base64Content;
 	/**
 	 * List of Source Object having id and imageUrl field 
 	 */
