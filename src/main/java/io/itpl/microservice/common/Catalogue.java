@@ -102,7 +102,7 @@ public class Catalogue  {
 	 *  A Flag just to badge in case the catalogue is sponsored.
 	 */
 	private boolean sponsored;
-	private List<String> highlights;
+	private GroupedValues highlights;
 	private String imageUrl;
 
 	public static String thumbImageUrl(Catalogue catalogue) {
@@ -269,11 +269,11 @@ public class Catalogue  {
 		this.mediaContentUrls = mediaContentUrls;
 	}
 
-	public List<String> getHighlights() {
+	public GroupedValues getHighlights() {
 		return highlights;
 	}
 
-	public void setHighlights(List<String> highlights) {
+	public void setHighlights(GroupedValues highlights) {
 		this.highlights = highlights;
 	}
 
