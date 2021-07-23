@@ -9,6 +9,7 @@ public class GenericObject extends BaseObject  {
     private String title;
     private String userId;
     private UserObject user;
+    private Catalogue catalogue;
 
     public String getId() {
         return id;
@@ -48,5 +49,13 @@ public class GenericObject extends BaseObject  {
 
     public void setUser(UserObject user) {
         this.user = user;
+    }
+
+    public Catalogue getCatalogue() {
+        return catalogue;
+    }
+
+    public void setCatalogue(Catalogue catalogue) {
+        this.catalogue = catalogue;
     }
 }

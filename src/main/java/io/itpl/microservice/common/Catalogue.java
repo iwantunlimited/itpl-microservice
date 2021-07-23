@@ -1,5 +1,7 @@
 package io.itpl.microservice.common;
 
+import com.google.common.base.Strings;
+
 import java.util.List;
 
 public class Catalogue  {
@@ -100,7 +102,30 @@ public class Catalogue  {
 	 *  A Flag just to badge in case the catalogue is sponsored.
 	 */
 	private boolean sponsored;
-	
+	private List<String> highlights;
+	private String imageUrl;
+
+	public static String thumbImageUrl(Catalogue catalogue) {
+		if(catalogue == null){
+			return null;
+		}
+		if(!Strings.isNullOrEmpty(catalogue.getImageUrl())){
+			return catalogue.getImageUrl();
+		}
+
+		MediaObject mediaObject = catalogue.getThumbImagePrimary();
+		if (mediaObject != null) {
+			return mediaObject.getSrc();
+		}
+
+		List<String> thumbImages = catalogue.getThumbImageUrl();
+		if(thumbImages!=null && !thumbImages.isEmpty()){
+			return thumbImages.get(0);
+		}
+
+		return null;
+	}
+
 	public MediaObject getBannerImage() {
 		return bannerImage;
 	}
@@ -242,5 +267,21 @@ public class Catalogue  {
 
 	public void setMediaContentUrls(List<String> mediaContentUrls) {
 		this.mediaContentUrls = mediaContentUrls;
+	}
+
+	public List<String> getHighlights() {
+		return highlights;
+	}
+
+	public void setHighlights(List<String> highlights) {
+		this.highlights = highlights;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 }
