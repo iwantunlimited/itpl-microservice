@@ -2,6 +2,7 @@ package io.itpl.microservice.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.base.Strings;
+import io.itpl.microservice.utils.CommonHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -45,6 +46,9 @@ public class ApiGateway extends DefaultApiGateway {
 		String sid = http.getParameter("sid");
 		logger.trace("[readParams] actionCode:{},tid:{},sid:{}",actionCode,tid,sid);
 		return blankBody(actionCode,tid,sid);
+	}
+	public JsonNode requestBody(HttpServletRequest http,String defaultActionCode){
+		return readParams(http,defaultActionCode);
 	}
 	public JsonNode readParams(HttpServletRequest http,String defaultActionCode){
 		String actionCode = http.getParameter("actionCode");
@@ -96,12 +100,16 @@ public class ApiGateway extends DefaultApiGateway {
 		while(params.hasMoreElements()) {
 			String name = params.nextElement();
 			String value = httpRequest.getParameter(name);
-			logger.trace("Added Http Request Paramter:"+(paramsCount++) + "<"+name+">:<"+value+">");
+			logger.trace("Added Http Request Parameter:"+(paramsCount++) + "<"+name+">:<"+value+">");
 			requestParameters.put(name, value);
 		}
-		logger.trace("["+paramsCount+"]- Parameters Receiced in HttpRequest");
+		logger.trace("["+paramsCount+"]- Parameters Received in HttpRequest");
 		// Here we Generated a Map Object, Lets convert it to JSON and forward to MASTER CALL.
 		return execute(httpRequest,objectMapper.convertValue(requestParameters, JsonNode.class),null);
+	}
+
+	protected Map<String,String> map(String key,String value){
+		return CommonHelper.asMap(key,value);
 	}
 
 
