@@ -21,6 +21,7 @@ import java.util.Map;
 public class ApiGateway extends DefaultApiGateway {
 	private static final Logger logger = LoggerFactory.getLogger(ApiGateway.class);
 
+
 	/**
 	 *  Utility method to Build the  ApiRequest with Given Action Code and Blank Body.
 	 * @param actionCode
@@ -84,6 +85,13 @@ public class ApiGateway extends DefaultApiGateway {
 	public ApiResponse execute(HttpServletRequest httpReq,JsonNode req) {
 		// Let's mark the pathVariables as NULL/
 		return execute(httpReq,req,null);
+	}
+	protected ApiResponse executeWithBody(HttpServletRequest http,Object obj){
+		JsonNode json = objectMapper.convertValue(obj,JsonNode.class);
+		return execute(http,json);
+	}
+	protected ApiResponse execute(HttpServletRequest http,String actionCode,String id){
+		return execute(http,requestBody(http,actionCode),map("id",id));
 	}
 
 	/**
