@@ -21,6 +21,7 @@ import java.util.List;
 public class DefaultAnalyticsBuilder extends MongoExecutorService {
     private static final Logger logger = LoggerFactory.getLogger(DefaultAnalyticsBuilder.class);
     public static final String resourceName = "init-widgets.json";
+    public static final String tag = "LOAD-WIDGETS";
     @Autowired
     ObjectMapper objectMapper;
 
@@ -29,12 +30,15 @@ public class DefaultAnalyticsBuilder extends MongoExecutorService {
 
     public void createDefaultAnalytics() throws IOException {
         Resource resource = new ClassPathResource(resourceName);
-        File file = resource.getFile();
-        boolean fileExists = file.exists();
-        long size = file.length();
-        logger.trace("[createDefaultAnalytics] {}, exists:{}, size:{}",resourceName,fileExists,size);
-        byte[] chunk = new byte[(int)size];
+        if(!resource.exists()){
+            logger.error("[{}]Resource :{} does not exists.",tag,resourceName);
+        }else{
+            logger.trace("[{}]Resource :{} exists. {}",tag,resourceName,resource.getURI());
+        }
         InputStream stream = resource.getInputStream();
+        int size = stream.available();
+        logger.trace("[{}] Opening Stream. Size:{} bytes",tag,size);
+        byte[] chunk = new byte[size];
         stream.read(chunk);
         ByteArrayInputStream byteStream = new ByteArrayInputStream(chunk);
         List<AnalyticsElement> elements = objectMapper.readValue(chunk, new TypeReference<List<AnalyticsElement>>() {
