@@ -2,6 +2,7 @@ package io.itpl.microservice.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.base.Strings;
+import io.itpl.microservice.utils.CommonHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ import java.util.Map;
 @Component
 public class ApiGateway extends DefaultApiGateway {
 	private static final Logger logger = LoggerFactory.getLogger(ApiGateway.class);
+
 
 	/**
 	 *  Utility method to Build the  ApiRequest with Given Action Code and Blank Body.
@@ -45,6 +47,9 @@ public class ApiGateway extends DefaultApiGateway {
 		String sid = http.getParameter("sid");
 		logger.trace("[readParams] actionCode:{},tid:{},sid:{}",actionCode,tid,sid);
 		return blankBody(actionCode,tid,sid);
+	}
+	public JsonNode requestBody(HttpServletRequest http,String defaultActionCode){
+		return readParams(http,defaultActionCode);
 	}
 	public JsonNode readParams(HttpServletRequest http,String defaultActionCode){
 		String actionCode = http.getParameter("actionCode");
@@ -81,6 +86,13 @@ public class ApiGateway extends DefaultApiGateway {
 		// Let's mark the pathVariables as NULL/
 		return execute(httpReq,req,null);
 	}
+	protected ApiResponse executeWithBody(HttpServletRequest http,Object obj){
+		JsonNode json = objectMapper.convertValue(obj,JsonNode.class);
+		return execute(http,json);
+	}
+	protected ApiResponse execute(HttpServletRequest http,String actionCode,String id){
+		return execute(http,requestBody(http,actionCode),map("id",id));
+	}
 
 	/**
 	 *  SIGNATURE C :
@@ -96,12 +108,16 @@ public class ApiGateway extends DefaultApiGateway {
 		while(params.hasMoreElements()) {
 			String name = params.nextElement();
 			String value = httpRequest.getParameter(name);
-			logger.trace("Added Http Request Paramter:"+(paramsCount++) + "<"+name+">:<"+value+">");
+			logger.trace("Added Http Request Parameter:"+(paramsCount++) + "<"+name+">:<"+value+">");
 			requestParameters.put(name, value);
 		}
-		logger.trace("["+paramsCount+"]- Parameters Receiced in HttpRequest");
+		logger.trace("["+paramsCount+"]- Parameters Received in HttpRequest");
 		// Here we Generated a Map Object, Lets convert it to JSON and forward to MASTER CALL.
 		return execute(httpRequest,objectMapper.convertValue(requestParameters, JsonNode.class),null);
+	}
+
+	protected Map<String,String> map(String key,String value){
+		return CommonHelper.asMap(key,value);
 	}
 
 

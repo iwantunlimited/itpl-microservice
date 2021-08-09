@@ -84,6 +84,7 @@ public class BaseObject  {
 	private String realm;
 	@Transient private boolean error;
 	@Transient private String errorMessage;
+	@Transient private boolean replace;
 
 	public String getTransactionId() {
 		return transactionId;
@@ -281,5 +282,13 @@ public class BaseObject  {
 
 	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
+	}
+
+	public boolean isReplace() {
+		return replace;
+	}
+
+	public void setReplace(boolean replace) {
+		this.replace = replace;
 	}
 }

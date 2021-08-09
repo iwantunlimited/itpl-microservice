@@ -27,6 +27,7 @@ public class UserFile {
 	private String fileName;
 	private String mimeType;
 	private long size;
+	private int totalPackets;
 	private byte[] content;
 	private String contentBase64;
 	private boolean isDirectory;
@@ -176,6 +177,14 @@ public class UserFile {
 
 	public LoggedInUser getOwner() {
 		return owner;
+	}
+
+	public int getTotalPackets() {
+		return totalPackets;
+	}
+
+	public void setTotalPackets(int totalPackets) {
+		this.totalPackets = totalPackets;
 	}
 }
 

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.Hashtable;
+import java.util.Map;
 
 
 /**
@@ -115,6 +116,19 @@ public abstract class AbstractAction extends MongoExecutorService implements Act
 		});
 		relayProcess.start();
 	}
+	public ApiResponse execute(ActionRequest req,JsonNode response){
+		execute(req,null,response);
+		ApiResponse apiResponse = init();
+		apiResponse.setData(response);
+		return apiResponse;
+	}
+	public ApiResponse execute(ActionRequest req,Object response){
+		JsonNode jsonNode = objectMapper.convertValue(response,JsonNode.class);
+		execute(req,null,jsonNode);
+		ApiResponse apiResponse = init();
+		apiResponse.setData(jsonNode);
+		return apiResponse;
+	}
 
 	/**
 	 *  This signature is needed to ensure User from one domain are able to create new Users in Other domain.
@@ -180,6 +194,34 @@ public abstract class AbstractAction extends MongoExecutorService implements Act
 		req.setOsName(action.getOsName());
 		req.setDeviceMac(action.getDeviceMac());
 		logger.trace("Abstarct-action-Update-req-{}",req);
+	}
+	protected String mapId(Map<String,String> pathVariables){
+		if(pathVariables != null && !pathVariables.isEmpty() && pathVariables.containsKey("id")){
+			return pathVariables.get("id");
+		}else{
+			return null;
+		}
+	}
+	protected String mapDomain(ActionRequest action){
+		if(action.getCurrentUser()!=null){
+			return action.getCurrentUser().getDomainSsid();
+		}else{
+			return null;
+		}
+	}
+	protected String mapUserId(ActionRequest action){
+		if(action.getCurrentUser()!=null){
+			return action.getCurrentUser().getId();
+		}else{
+			return null;
+		}
+	}
+	protected int mapUserType(ActionRequest action){
+		if(action.getCurrentUser()!=null){
+			return action.getCurrentUser().getUserType();
+		}else{
+			return Integer.MAX_VALUE;
+		}
 	}
 }
 

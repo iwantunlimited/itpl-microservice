@@ -1,6 +1,7 @@
 package io.itpl.microservice.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.itpl.microservice.mongo.MongoExecutorService;
 import org.slf4j.Logger;
@@ -24,20 +25,23 @@ public class ResourceHelper extends MongoExecutorService {
     ObjectMapper objectMapper;
 
     public <T> List<T> loadSystemResource(String resourceName, Class<T> model) throws IOException {
-        String tag = "Load-System-Resource";
+        String tag = resourceName;
         Resource resource = new ClassPathResource(resourceName);
-        File file = resource.getFile();
-        boolean fileExists = file.exists();
-        long size = file.length();
-        logger.trace("[{}] loadSystemDefault : {}, exists:{}, size:{}",tag,resourceName,fileExists,size);
-        byte[] chunk = new byte[(int)size];
+        if(!resource.exists()){
+            logger.error("[{}]Resource :{} does not exists.",tag,resourceName);
+        }else{
+            logger.trace("[{}]Resource :{} exists. {}",tag,resourceName,resource.getURI());
+        }
         InputStream stream = resource.getInputStream();
+        int size = stream.available();
+        logger.trace("[{}] Opening Stream. Size:{} bytes",tag,size);
+        byte[] chunk = new byte[size];
         stream.read(chunk);
-        ByteArrayInputStream byteStream = new ByteArrayInputStream(chunk);
-        List<T> elements = objectMapper.readValue(chunk, new TypeReference<List<T>>() {
-        });
+        String jsonContent = new String(chunk);
+        JavaType type = objectMapper.getTypeFactory().constructCollectionType(List.class,model);
+        List<T> elements = objectMapper.readValue(jsonContent, type);
         if(missing(elements)){
-            logger.trace("[{}] Finished Reading: {}, Relay-Config elements not found.",tag,resourceName);
+            logger.trace("[{}] Finished Reading: {}, elements not found.",tag,resourceName);
         }
         int count = elements.size();
         logger.trace("[{}] Finished Reading: {}, found total [{}] items",tag,resourceName,count);
