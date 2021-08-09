@@ -49,9 +49,10 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .requestMatchers()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/**","/iwantcdn/**","/public/**").permitAll()
+                .antMatchers("/api/**","/iwantcdn/**","/public/**","/swagger-ui.html","/v2/api-docs","/webjars/**").permitAll()
                 .antMatchers("/api/secured/**" ).authenticated();
                 
                 logger.info("Http Security Configured in Resource Server");
     }
 }
+
