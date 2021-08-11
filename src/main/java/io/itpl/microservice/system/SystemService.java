@@ -27,9 +27,6 @@ public interface SystemService {
     @DeleteMapping("/api/remote/users/delete/{id}")
 	public SystemUser delete( @PathVariable("id") String id);
 	
-    @DeleteMapping("/api/remote/users/remove/{id}")
-	public SystemUser remove( @PathVariable("id") String id);
-
     @PostMapping("/api/remote/system-user/findByIdentity")
 	public SystemUser findByIdentity(@RequestBody SystemUserIdentifier body);
     
