@@ -24,6 +24,9 @@ public class Country {
 	private GeoPoint gpsLocation;
 	private String currencyCode;
 	private String currencySymbol;
+	private String localName;
+	private String continent;
+	private String region;
 
 	public String getId() {
 		return id;
@@ -123,5 +126,29 @@ public class Country {
 
 	public void setCurrencySymbol(String currencySymbol) {
 		this.currencySymbol = currencySymbol;
+	}
+
+	public String getLocalName() {
+		return localName;
+	}
+
+	public void setLocalName(String localName) {
+		this.localName = localName;
+	}
+
+	public String getContinent() {
+		return continent;
+	}
+
+	public void setContinent(String continent) {
+		this.continent = continent;
+	}
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
 	}
 }
