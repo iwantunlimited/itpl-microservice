@@ -1,31 +1,37 @@
 package io.itpl.microservice.system;
 
+import io.itpl.microservice.common.GeoPoint;
+import io.itpl.microservice.common.LocalTimeZone;
 import org.springframework.data.mongodb.core.index.Indexed;
+
+import java.util.List;
 
 public class Country {
 
 	private String id;
-	@Indexed private long code;
+
 	@Indexed private String name;
 	
 	private String mcc;
 	@Indexed private String isoCode;
+	@Indexed private String countryCode;
 	@Indexed private boolean systemDefault;
-	
 	private String timezoneId;
+	private List<LocalTimeZone> timeZones;
 	private String localeId;
+	private String emoji;
+	private String emojiCode;
+	private GeoPoint gpsLocation;
+	private String currencyCode;
+	private String currencySymbol;
+
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public long getCode() {
-		return code;
-	}
-	public void setCode(long code) {
-		this.code = code;
-	}
+
 	public String getName() {
 		return name;
 	}
@@ -62,5 +68,60 @@ public class Country {
 	public void setLocaleId(String localeId) {
 		this.localeId = localeId;
 	}
-	
+
+	public List<LocalTimeZone> getTimeZones() {
+		return timeZones;
+	}
+
+	public void setTimeZones(List<LocalTimeZone> timeZones) {
+		this.timeZones = timeZones;
+	}
+
+	public String getEmoji() {
+		return emoji;
+	}
+
+	public void setEmoji(String emoji) {
+		this.emoji = emoji;
+	}
+
+	public String getEmojiCode() {
+		return emojiCode;
+	}
+
+	public void setEmojiCode(String emojiCode) {
+		this.emojiCode = emojiCode;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+
+	public GeoPoint getGpsLocation() {
+		return gpsLocation;
+	}
+
+	public void setGpsLocation(GeoPoint gpsLocation) {
+		this.gpsLocation = gpsLocation;
+	}
+
+	public String getCurrencyCode() {
+		return currencyCode;
+	}
+
+	public void setCurrencyCode(String currencyCode) {
+		this.currencyCode = currencyCode;
+	}
+
+	public String getCurrencySymbol() {
+		return currencySymbol;
+	}
+
+	public void setCurrencySymbol(String currencySymbol) {
+		this.currencySymbol = currencySymbol;
+	}
 }

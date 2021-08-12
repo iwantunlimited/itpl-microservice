@@ -1,5 +1,6 @@
 package io.itpl.microservice.system;
 
+import io.itpl.microservice.common.GeoPoint;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 public class State {
@@ -9,9 +10,11 @@ public class State {
 	private String timeZoneId;
 	private String localeId;
 	@Indexed private long code;
-	
+	@Indexed private String stateCode;
 	@Indexed private String countryId;
 	@Indexed private String countryName;
+	@Indexed private String countryCode;
+	private GeoPoint gpsLocation;
 	
 	public String getId() {
 		return id;
@@ -43,5 +46,44 @@ public class State {
 	public void setCode(long code) {
 		this.code = code;
 	}
-	
+
+	public String getCountryId() {
+		return countryId;
+	}
+
+	public void setCountryId(String countryId) {
+		this.countryId = countryId;
+	}
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+
+	public String getCountryCode() {
+		return countryCode;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
+
+	public String getStateCode() {
+		return stateCode;
+	}
+
+	public void setStateCode(String stateCode) {
+		this.stateCode = stateCode;
+	}
+
+	public GeoPoint getGpsLocation() {
+		return gpsLocation;
+	}
+
+	public void setGpsLocation(GeoPoint gpsLocation) {
+		this.gpsLocation = gpsLocation;
+	}
 }

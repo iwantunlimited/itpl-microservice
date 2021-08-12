@@ -115,7 +115,16 @@ public class Catalogue  {
 
 		MediaObject mediaObject = catalogue.getThumbImagePrimary();
 		if (mediaObject != null) {
-			return mediaObject.getSrc();
+			String src = mediaObject.getSrc();
+			if(!Strings.isNullOrEmpty(src)){
+				return src;
+			}else{
+				List<String> images = mediaObject.getMediaSource();
+				if(images != null && !images.isEmpty()){
+					return images.get(0);
+				}
+			}
+
 		}
 
 		List<String> thumbImages = catalogue.getThumbImageUrl();
