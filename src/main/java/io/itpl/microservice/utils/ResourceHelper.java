@@ -37,6 +37,7 @@ public class ResourceHelper extends MongoExecutorService {
         logger.trace("[{}] Opening Stream. Size:{} bytes",tag,size);
         byte[] chunk = new byte[size];
         stream.read(chunk);
+        stream.close();
         String jsonContent = new String(chunk);
         JavaType type = objectMapper.getTypeFactory().constructCollectionType(List.class,model);
         List<T> elements = objectMapper.readValue(jsonContent, type);
