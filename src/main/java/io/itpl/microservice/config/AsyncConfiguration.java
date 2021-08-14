@@ -21,10 +21,10 @@ public class AsyncConfiguration extends AsyncConfigurerSupport{
     public Executor taskExecutor() {
         LOGGER.debug("Creating Async Task Executor");
         final ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(50);
-        executor.setMaxPoolSize(200);
-        executor.setQueueCapacity(100);
-        executor.setThreadNamePrefix("ResourceTask-");
+        executor.setCorePoolSize(256);
+        executor.setMaxPoolSize(1024);
+        executor.setQueueCapacity(128);
+        executor.setThreadNamePrefix("Task-");
         executor.initialize();
         return executor;
     }
