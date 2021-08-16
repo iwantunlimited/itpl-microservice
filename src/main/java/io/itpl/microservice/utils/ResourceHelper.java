@@ -15,6 +15,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Component
@@ -35,17 +36,14 @@ public class ResourceHelper extends MongoExecutorService {
         InputStream stream = resource.getInputStream();
         int size = stream.available();
         logger.trace("[{}] Opening Stream. Size:{} bytes",tag,size);
-        byte[] chunk = new byte[size];
-        stream.read(chunk);
-        stream.close();
-        String jsonContent = new String(chunk);
         JavaType type = objectMapper.getTypeFactory().constructCollectionType(List.class,model);
-        List<T> elements = objectMapper.readValue(jsonContent, type);
+        List<T> elements = objectMapper.readValue(stream, type);
         if(missing(elements)){
             logger.trace("[{}] Finished Reading: {}, elements not found.",tag,resourceName);
         }
         int count = elements.size();
         logger.trace("[{}] Finished Reading: {}, found total [{}] items",tag,resourceName,count);
+        stream.close();
         return elements;
     }
 }
