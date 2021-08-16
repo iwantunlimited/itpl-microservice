@@ -154,7 +154,6 @@ public class MongoExecutorService {
 			logger.error("<mongoService> is Null");
 			throw new ApiException("Database Connection lost!!");
 		}
-		logger.trace("maxValue>> entity: {}, domain: {}, Class : {} ",entity,domain,t);
 		Date timestamp = new Date();
 
 		final Aggregation aggregation = build(domain);
@@ -167,7 +166,6 @@ public class MongoExecutorService {
 		}
 		int max = (int) records.get(0).getMaxValue();
 		int responseTime = (int) (new Date().getTime()-timestamp.getTime());
-		logger.debug("{}ms Response time of nextValue[max:{},domain:{}]",responseTime,max,domain);
 		return max;
 	}
 	private Aggregation build(String domain){
@@ -202,7 +200,6 @@ public class MongoExecutorService {
 		int maxValue = maxValue(entity,domain,type);
 		int sequence = maxValue + 1;
 		String ssid = CommonHelper.random(sequence,length);
-		logger.trace("[generateSsid] model:{},domain:{},sequence:{},ssid:{}",entity,domain,sequence,ssid);
 		req.setSequenceNumber(sequence);
 		req.setSsid(ssid);
 	}
@@ -210,7 +207,6 @@ public class MongoExecutorService {
 		int maxValue = maxValue(type.getName(),domain,type);
 		int sequence = maxValue + 1;
 		String ssid = CommonHelper.random(sequence,length);
-		logger.trace("[generateSsid] model:{},domain:{},sequence:{},ssid:{}",type.getName(),domain,sequence,ssid);
 		req.setSequenceNumber(sequence);
 		req.setSsid(ssid);
 	}
