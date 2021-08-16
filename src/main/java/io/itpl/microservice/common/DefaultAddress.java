@@ -2,7 +2,7 @@ package io.itpl.microservice.common;
 
 import io.itpl.microservice.system.City;
 
-public class Address {
+public class DefaultAddress {
 
     private String address;
     private String streetName;
