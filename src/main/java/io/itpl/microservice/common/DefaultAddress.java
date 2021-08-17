@@ -4,6 +4,8 @@ import io.itpl.microservice.system.City;
 
 public class DefaultAddress {
 
+    private String id;
+    private String type;
     private String address;
     private String streetName;
     private String locality;
@@ -84,5 +86,21 @@ public class DefaultAddress {
 
     public void setDefaultAddress(boolean defaultAddress) {
         this.defaultAddress = defaultAddress;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
