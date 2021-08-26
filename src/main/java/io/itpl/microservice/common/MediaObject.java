@@ -86,6 +86,19 @@ public class MediaObject {
 	 * List of Source Object having id and imageUrl field 
 	 */
 	private List<String>mediaSource;
+	
+	/**
+	* Type - Other, 
+	*/
+	private String jsonObject;
+
+	public String getJsonObject() {
+            return jsonObject;
+        }
+
+	public void setJsonObject(String jsonObject) {
+	    this.jsonObject = jsonObject;
+	}
 
 	public List<String> getMediaSource() {
 		return mediaSource;
