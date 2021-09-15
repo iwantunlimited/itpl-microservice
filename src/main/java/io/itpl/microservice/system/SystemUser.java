@@ -60,7 +60,8 @@ public class SystemUser extends BaseObject implements ObjectValidator {
 	private String externalSystemCode;
 	private String profileId;
 	private String qrCodeImageUrl;
-	
+	private String gender;
+	private String birthDate;
 	
 	public String getId() {
 		return id;
@@ -323,5 +324,20 @@ public class SystemUser extends BaseObject implements ObjectValidator {
 
 	public void setQrCodeImageUrl(String qrCodeImageUrl) {
 		this.qrCodeImageUrl = qrCodeImageUrl;
+	}
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
 	}
 }
