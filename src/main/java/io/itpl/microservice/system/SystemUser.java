@@ -62,6 +62,7 @@ public class SystemUser extends BaseObject implements ObjectValidator {
 	private String qrCodeImageUrl;
 	private String gender;
 	private String birthDate;
+	private boolean incognito;
 	
 	public String getId() {
 		return id;
@@ -339,5 +340,13 @@ public class SystemUser extends BaseObject implements ObjectValidator {
 
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public boolean isIncognito() {
+		return incognito;
+	}
+
+	public void setIncognito(boolean incognito) {
+		this.incognito = incognito;
 	}
 }

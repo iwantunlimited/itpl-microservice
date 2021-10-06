@@ -59,5 +59,11 @@ public interface SystemService {
 
     @PostMapping("/api/remote/relay-config/upload")
     public void uploadRelayConfig(@RequestBody List<RelayConfig> elements);
+
+    @GetMapping("/api/remote/system/setincognito/{id}")
+    public void setIncognito(@PathVariable ("id") String id);
+
+    @GetMapping("/api/remote/system/removeincognito/{id}")
+    public void removeIncognito(@PathVariable ("id") String id);
     
 }
