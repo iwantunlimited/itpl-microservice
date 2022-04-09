@@ -107,6 +107,12 @@ public class MediaDeliveryGateway extends DefaultApiGateway {
                 return ApiResponse.error("Can't process empty or invalid file");
             }
             String originalFileName = file!=null?file.getOriginalFilename():(httpRequest.getParameter("name"));
+            if(originalFileName.toLowerCase().endsWith("jpg") ||originalFileName.toLowerCase().endsWith("jpeg") ){
+                contentType = "image/jpeg";
+            }
+            if(originalFileName.toLowerCase().endsWith("png")){
+                contentType = "image/png";
+            }
             /**
              *  Building "owner" Object based on LoggedInUser.
              */
