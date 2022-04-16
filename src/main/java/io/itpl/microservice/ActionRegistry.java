@@ -24,8 +24,10 @@ public class ActionRegistry {
 		logger.info("Looking up for :"+moduleId+" in the Action Registry:"+actionRegistry);
 		
 		if(actionRegistry.containsKey(moduleId)) {
+			logger.info("Module -{}- is online",moduleId);
 			return actionRegistry.get(moduleId);
 		}else {
+			logger.info("Module -{}- Not registered",moduleId);
 			return null;
 		}
 	}

@@ -2,7 +2,9 @@ package io.itpl.microservice.common;
 
 import io.itpl.microservice.LoggedInUser;
 
-public class UserObject {
+import java.io.Serializable;
+
+public class UserObject implements Serializable {
 
 	private String id;
 	private String avtarUrl;

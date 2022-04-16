@@ -1,10 +1,13 @@
 package io.itpl.microservice;
 
+import javax.sql.rowset.serial.SerialArray;
+import java.io.Serializable;
+
 /**
  *  This Class defines a Properties of Logged-In User.
  *  Api-Gateway will parse the Barrier Token and Create Instance of this Class to represent the User Details.
  */
-public class LoggedInUser {
+public class LoggedInUser implements Serializable {
 
     private String lastName;
     private String userName;
