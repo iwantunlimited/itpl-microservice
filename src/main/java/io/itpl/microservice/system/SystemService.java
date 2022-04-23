@@ -3,10 +3,12 @@ package io.itpl.microservice.system;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.itpl.microservice.api.ApiResponse;
+import io.itpl.microservice.common.UserObject;
 import io.itpl.microservice.config.FeignConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -65,5 +67,8 @@ public interface SystemService {
 
     @GetMapping("/api/remote/system/removeincognito/{id}")
     public void removeIncognito(@PathVariable ("id") String id);
+
+    @PostMapping("/api/remote/findAllByIds")
+    public Map<String, UserObject> findAllByIds(@RequestBody HashSet<String> ids);
     
 }
