@@ -1,6 +1,7 @@
 package io.itpl.microservice.mongo;
 
 import org.reflections.Reflections;
+import org.reflections.util.ConfigurationBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -33,7 +34,7 @@ public class ModelRegistry {
     }
 
     public void scan(String packageName){
-        Reflections reflections = new Reflections(packageName);
+        Reflections reflections = new Reflections(new ConfigurationBuilder().forPackages(packageName));
 
         Set<Class<?>> allClasses =
                 reflections.getTypesAnnotatedWith(Document.class);
