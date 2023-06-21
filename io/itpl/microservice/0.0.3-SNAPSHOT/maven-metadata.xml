@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>io.itpl</groupId>
+  <artifactId>microservice</artifactId>
+  <versioning>
+    <lastUpdated>20230621062002</lastUpdated>
+    <snapshot>
+      <timestamp>20230621.062002</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>0.0.3-20230621.062002-1</value>
+        <updated>20230621062002</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>0.0.3-20230621.062002-1</value>
+        <updated>20230621062002</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <classifier>exec</classifier>
+        <extension>jar</extension>
+        <value>0.0.3-20230621.062002-1</value>
+        <updated>20230621062002</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+  <version>0.0.3-SNAPSHOT</version>
+</metadata>
