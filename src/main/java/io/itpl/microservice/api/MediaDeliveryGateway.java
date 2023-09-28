@@ -189,6 +189,8 @@ public class MediaDeliveryGateway extends DefaultApiGateway {
         }
         String width = httpRequest.getParameter("width");
         String height = httpRequest.getParameter("height");
+        String thumbnail = httpRequest.getParameter("thumbnail");
+        String original = httpRequest.getParameter("original");
 
         ResourceFilter filter = new ResourceFilter();
         if(width!=null && CommonHelper.isInteger(width)){
@@ -196,6 +198,12 @@ public class MediaDeliveryGateway extends DefaultApiGateway {
         }
         if(height!=null && CommonHelper.isInteger(height)){
             filter.setHeight(Integer.parseInt(height));
+        }
+        if(thumbnail!=null){
+            filter.setThumbnail(Boolean.parseBoolean(thumbnail));
+        }
+        if(original!=null){
+            filter.setThumbnail(Boolean.parseBoolean(original));
         }
         logger.trace(filter.toString());
         GetResourceRequest req = new GetResourceRequest();
@@ -207,7 +215,6 @@ public class MediaDeliveryGateway extends DefaultApiGateway {
         try {
             logger.trace("1:-"+objectMapper.writeValueAsString(body));
         } catch (JsonProcessingException e) {
-
             e.printStackTrace();
         }
         Map<String,String> pathVariables = new HashMap<>();
