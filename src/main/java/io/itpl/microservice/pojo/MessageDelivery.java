@@ -2,7 +2,6 @@ package io.itpl.microservice.pojo;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import io.itpl.microservice.LoggedInUser;
-import io.itpl.microservice.common.UserObject;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,10 +38,4 @@ public class MessageDelivery {
     private Object cloud;
     private String cloudName;
     private Object alert;
-
-    public static MessageDelivery builder(JsonNode content){
-        MessageDelivery message = new MessageDelivery();
-        message.setContent(content);
-        return message;
-    }
 }

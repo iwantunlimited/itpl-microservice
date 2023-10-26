@@ -17,7 +17,7 @@ import java.util.Map;
 public interface SystemService {
 
 	@PostMapping("/api/system/broadcast")
-	public ApiResponse send(@RequestBody BroadcastMessageBody req);
+	public ApiResponse send(@RequestBody BroadcastMessage req);
 
 
     @PostMapping("/api/remote/users/create")
