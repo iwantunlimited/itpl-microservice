@@ -38,4 +38,5 @@ public class MessageDelivery {
     private Object cloud;
     private String cloudName;
     private Object alert;
+    private String message;
 }

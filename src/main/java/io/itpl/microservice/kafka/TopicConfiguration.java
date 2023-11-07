@@ -21,6 +21,7 @@ public class TopicConfiguration {
 
     public final static String MESSAGE_DELIVERY_TOPIC = "MESSAGE_DELIVERY";
     public final static String BROADCAST_TOPIC = "BROADCAST";
+    public final static String USEROBJECT_TOPIC = "USEROBJECT";
     @Autowired
     KafkaURLConfiguration kafkaURLConfiguration;
 
@@ -50,6 +51,17 @@ public class TopicConfiguration {
         }
         return TopicBuilder.name(BROADCAST_TOPIC).partitions(10).config(TopicConfig.RETENTION_MS_CONFIG, "1800000") // minutes * 60,000
                 .config(TopicConfig.CLEANUP_POLICY_CONFIG, TopicConfig.CLEANUP_POLICY_DELETE).config(TopicConfig.SEGMENT_MS_CONFIG, "1800000") // minutes * 60,000
+                .build();
+    }
+
+    @Bean(USEROBJECT_TOPIC)
+    public NewTopic userObject() throws ExecutionException, InterruptedException {
+        if (doesTopicExist(USEROBJECT_TOPIC)) {
+            log.info("Topic already exists : {}", USEROBJECT_TOPIC);
+            return null;
+        }
+        return TopicBuilder.name(USEROBJECT_TOPIC).partitions(10).config(TopicConfig.RETENTION_MS_CONFIG, "3600000") // minutes * 60,000
+                .config(TopicConfig.CLEANUP_POLICY_CONFIG, TopicConfig.CLEANUP_POLICY_DELETE).config(TopicConfig.SEGMENT_MS_CONFIG, "3600000") // minutes * 60,000
                 .build();
     }
 

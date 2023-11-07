@@ -1,9 +1,11 @@
 package io.itpl.microservice.common;
 
 import io.itpl.microservice.LoggedInUser;
+import lombok.ToString;
 
 import java.io.Serializable;
 
+@ToString
 public class UserObject implements Serializable {
 
 	private String id;

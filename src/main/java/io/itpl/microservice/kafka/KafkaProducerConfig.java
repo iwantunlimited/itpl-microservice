@@ -1,5 +1,6 @@
 package io.itpl.microservice.kafka;
 
+import io.itpl.microservice.common.UserObject;
 import io.itpl.microservice.pojo.MessageDelivery;
 import io.itpl.microservice.system.BroadcastMessage;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -30,6 +31,15 @@ public class KafkaProducerConfig {
 
     @Bean(name = "broadCast")
     public KafkaProducer<String, BroadcastMessage> broadCastProducer() {
+        Map<String, Object> config = new HashMap<>();
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaURLConfiguration.getKafkaURL());
+        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        return new KafkaProducer<>(config, new StringSerializer(), new JsonSerializer<>());
+    }
+
+    @Bean(name = "userObject")
+    public KafkaProducer<String, UserObject> userObjectProducer() {
         Map<String, Object> config = new HashMap<>();
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaURLConfiguration.getKafkaURL());
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);

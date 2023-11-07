@@ -1,5 +1,6 @@
 package io.itpl.microservice.kafka;
 
+import io.itpl.microservice.common.UserObject;
 import io.itpl.microservice.pojo.MessageDelivery;
 import io.itpl.microservice.system.BroadcastMessage;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,9 @@ public class KafkaProducerService {
     @Autowired
     KafkaProducer<String, BroadcastMessage> broadcastMessageBodyKafkaProducer;
 
+    @Autowired
+    KafkaProducer<String, UserObject> userObjectKafkaProducer;
+
     public void sendMessageDeliveryToKafka(String topic, String key, MessageDelivery message) {
         ProducerRecord<String, MessageDelivery> producerRecord = new ProducerRecord<>(topic, message);
         Future<RecordMetadata> metadataFuture = messageDeliveryKafkaProducer.send(producerRecord);
@@ -40,6 +44,17 @@ public class KafkaProducerService {
             log.info("BroadCastMessageBody failed to send to kafka.");
         } else {
             log.info("Sending BroadCastMessageBody to Kafka");
+        }
+    }
+
+    public void sendUserObjectToKafka(String topic, String key, UserObject userObject) {
+        ProducerRecord<String, UserObject> producerRecord = new ProducerRecord<>(topic, userObject);
+        Future<RecordMetadata> metadataFuture = userObjectKafkaProducer.send(producerRecord);
+
+        if (metadataFuture.isCancelled()) {
+            log.info("UserObject failed to send to kafka.");
+        } else {
+            log.info("Sending UserObject to Kafka");
         }
     }
 }
