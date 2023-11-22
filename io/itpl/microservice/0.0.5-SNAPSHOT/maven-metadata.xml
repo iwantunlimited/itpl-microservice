@@ -3,27 +3,27 @@
   <groupId>io.itpl</groupId>
   <artifactId>microservice</artifactId>
   <versioning>
-    <lastUpdated>20231122112313</lastUpdated>
+    <lastUpdated>20231122121325</lastUpdated>
     <snapshot>
-      <timestamp>20231122.112313</timestamp>
+      <timestamp>20231122.121325</timestamp>
       <buildNumber>1</buildNumber>
     </snapshot>
     <snapshotVersions>
       <snapshotVersion>
         <extension>jar</extension>
-        <value>0.0.5-20231122.112313-1</value>
-        <updated>20231122112313</updated>
+        <value>0.0.5-20231122.121325-1</value>
+        <updated>20231122121325</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>pom</extension>
-        <value>0.0.5-20231122.112313-1</value>
-        <updated>20231122112313</updated>
+        <value>0.0.5-20231122.121325-1</value>
+        <updated>20231122121325</updated>
       </snapshotVersion>
       <snapshotVersion>
         <classifier>exec</classifier>
         <extension>jar</extension>
-        <value>0.0.5-20231122.112313-1</value>
-        <updated>20231122112313</updated>
+        <value>0.0.5-20231122.121325-1</value>
+        <updated>20231122121325</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
