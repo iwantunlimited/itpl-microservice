@@ -1,8 +1,11 @@
 package io.itpl.microservice;
 
+import lombok.ToString;
+
 import javax.sql.rowset.serial.SerialArray;
 import java.io.Serializable;
 
+@ToString
 /**
  *  This Class defines a Properties of Logged-In User.
  *  Api-Gateway will parse the Barrier Token and Create Instance of this Class to represent the User Details.

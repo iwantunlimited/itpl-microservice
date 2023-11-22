@@ -8,6 +8,7 @@ import com.google.common.base.Strings;
 import io.itpl.microservice.ActionRequest;
 import io.itpl.microservice.ActionRouter;
 import io.itpl.microservice.LoggedInUser;
+import io.itpl.microservice.redis.LoggedInUserRedisService;
 import io.itpl.microservice.utils.CommonHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,9 @@ public class DefaultApiGateway implements RestApiGateway {
     @Autowired
     protected ObjectMapper objectMapper;
 
+    @Autowired
+    LoggedInUserRedisService loggedInUserRedisService;
+
     @Value("false")
     private boolean apiSecurityEnabled;
 
@@ -52,7 +56,13 @@ public class DefaultApiGateway implements RestApiGateway {
      */
     public ApiResponse execute(HttpServletRequest httpReq, JsonNode req, Map<String,String> pathVariables) {
 
-        LoggedInUser currentUser = read(httpReq);
+        LoggedInUser loggedInUser = read(httpReq);
+        LoggedInUser currentUser = loggedInUserRedisService.getLoggedInUser(loggedInUser.getId());
+//        LoggedInUser loggedInUser = loggedInUserRedisService.getLoggedInUser(currentUser.getId());
+//        logger.info("Logged in user  : " + loggedInUser);
+        logger.info("Current user : " + currentUser);
+
+
         String systemUserId;
         if(currentUser == null){
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
