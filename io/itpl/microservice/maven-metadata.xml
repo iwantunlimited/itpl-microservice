@@ -4,8 +4,8 @@
   <artifactId>microservice</artifactId>
   <versioning>
     <versions>
-      <version>0.0.5-SNAPSHOT</version>
+      <version>0.0.3-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20231127070053</lastUpdated>
+    <lastUpdated>20231127070254</lastUpdated>
   </versioning>
 </metadata>
