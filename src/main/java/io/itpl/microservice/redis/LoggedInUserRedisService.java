@@ -69,4 +69,8 @@ public class LoggedInUserRedisService {
         loggedInUser.setRealm(systemUser.getRealm());
         return loggedInUser;
     }
+
+    public boolean removeUserFromRedis(String key){
+        return Boolean.TRUE.equals(redisTemplate.delete(key));
+    }
 }

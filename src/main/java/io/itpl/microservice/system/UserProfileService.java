@@ -16,6 +16,9 @@ public interface UserProfileService {
     @GetMapping("/api/profile/userProfileFindById/{id}")
     UserProfile userProfileById(@PathVariable("id") String id);
 
+    @GetMapping("/remote/myBlock/list/{id}")
+    public List<String> myBlockedUsersList(@PathVariable("id") String id);
+
     @GetMapping("/remote/block/list/{id}")
     List<String> blockedUserList(@PathVariable("id") String id);
 

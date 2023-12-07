@@ -5,5 +5,5 @@ import io.itpl.microservice.pojo.UserProfile;
 
 public interface UserObjectConsumer {
 
-    void consumeUserObject(UserObject userObject, UserProfile userProfile);
+    void consumeUserObject(UserObject userObject);
 }

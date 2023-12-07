@@ -57,17 +57,18 @@ public class DefaultApiGateway implements RestApiGateway {
     public ApiResponse execute(HttpServletRequest httpReq, JsonNode req, Map<String,String> pathVariables) {
 
         LoggedInUser loggedInUser = read(httpReq);
-        LoggedInUser currentUser = loggedInUserRedisService.getLoggedInUser(loggedInUser.getId());
+        LoggedInUser currentUser = null;
+        if (loggedInUser != null && loggedInUser.getId() != null) {
+            currentUser = loggedInUserRedisService.getLoggedInUser(loggedInUser.getId());
 //        LoggedInUser loggedInUser = loggedInUserRedisService.getLoggedInUser(currentUser.getId());
 //        logger.info("Logged in user  : " + loggedInUser);
-        logger.info("Current user : " + currentUser);
-
+            logger.info("Current user : " + currentUser);
+        }
 
         String systemUserId;
         if(currentUser == null){
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             systemUserId = auth.getName();
-
         }else{
             systemUserId = currentUser.getId();
         }
