@@ -1,10 +1,14 @@
 package io.itpl.microservice.system;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class SystemUserIdentifier {
 	private String identifier;
 	private int userType;

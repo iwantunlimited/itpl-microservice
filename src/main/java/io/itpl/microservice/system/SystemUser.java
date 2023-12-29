@@ -63,7 +63,44 @@ public class SystemUser extends BaseObject implements ObjectValidator {
 	private String gender;
 	private String birthDate;
 	private boolean incognito;
-	
+
+	private boolean temporarilySuspend;
+	private boolean permanentSuspend;
+	private Date dayOfSuspension;
+	private int suspensionDays;
+
+	public boolean isTemporarilySuspend() {
+		return temporarilySuspend;
+	}
+
+	public void setTemporarilySuspend(boolean temporarilySuspend) {
+		this.temporarilySuspend = temporarilySuspend;
+	}
+
+	public boolean isPermanentSuspend() {
+		return permanentSuspend;
+	}
+
+	public void setPermanentSuspend(boolean permanentSuspend) {
+		this.permanentSuspend = permanentSuspend;
+	}
+
+	public Date getDayOfSuspension() {
+		return dayOfSuspension;
+	}
+
+	public void setDayOfSuspension(Date dayOfSuspension) {
+		this.dayOfSuspension = dayOfSuspension;
+	}
+
+	public int getSuspensionDays() {
+		return suspensionDays;
+	}
+
+	public void setSuspensionDays(int suspensionDays) {
+		this.suspensionDays = suspensionDays;
+	}
+
 	public String getId() {
 		return id;
 	}
