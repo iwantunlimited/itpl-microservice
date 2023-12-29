@@ -40,6 +40,8 @@ public interface SystemService {
 
     @PutMapping("/api/remote/users/update")
 	public SystemUser update(@RequestBody SystemUser req);
+    @PostMapping("/api/remote/user/report/action")
+    public SystemUser updateReportAction(@RequestBody SystemUser systemUser);
     
     @GetMapping("/api/remote/system/city/{id}")
 	public City findCityById(@PathVariable("id") String id);
