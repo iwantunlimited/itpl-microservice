@@ -71,5 +71,6 @@ public interface SystemService {
     @PostMapping("/api/remote/findAllByIds")
     public Map<String, UserObject> findAllByIds(@RequestBody HashSet<String> ids);
 
-    
+    @GetMapping("/api/remote/getAllUserIds")
+    List<String> getAllUserIds();
 }
